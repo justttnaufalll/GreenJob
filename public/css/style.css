@@ -185,21 +185,6 @@ transition: all 0.3s ease;
     font-weight: var(--fwbold);
 }
 
-.house-details .header .rating {
-    float: right;
-}
-
-.house-details .header h3 {
-    margin-top: 5px;
-    float: right;
-    margin-left: 10px;
-}
-
-.house-details .house-informations .features .icon {
-    float:left;
-    margin-right: 12px;
-}
-
 .house-details .house-informations .booking {
     padding: 30px;
     border: 1px solid var(--softgray2);
@@ -243,7 +228,7 @@ p{
 .course-col{
     flex-basis: 31%;
     background: #eeecec;
-    border-radius: 10px;
+    border-radius: 20px;
     margin-bottom: 5%;
     padding: 20px 12px;
     transition: 0.5s;
@@ -257,7 +242,7 @@ h3{
 .course-col:hover{
     box-shadow: 0 0 20px rgb(0, 94, 255);
 }
-@media(max-width: 700px){
+@media(max-width: 300px){
     .row{
         flex-direction: column;
     }

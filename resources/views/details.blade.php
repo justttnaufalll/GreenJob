@@ -16,9 +16,9 @@
 
 <body>
     @include('partials.header')
-    <section class="house-details pb-2">
+    <section class="house-details pb-1"  style="text-align: center;">
         <div class="container">
-            <div class="row align-items-center mb-2">
+            <div class="row align-items-center ">
                 <div class="col-lg-5">
                     <h1 class="jumbo-header">
                         Daftar Tanaman
@@ -27,30 +27,59 @@
                         Daftar Tanaman Yang Sudah Tertanam.
                     </p>
                 </div>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
+                </section>
+            <div>
                 @foreach($datas as $row )
-            <div class="col-md-4">
-                <div class="card">
-                    <img src="{{ asset('fototanaman/'.$row->foto) }}" class="card-img-top" width="300px" height="450px">
-                    <div class="card-body">
-                        <h3 class="strong">{{ $row->nama }}</h3>
-                    <p class="card-text">
-                        <strong>Jumlah :</strong>  {{ $row->jumlah }} Tanaman
-                    </p>
-                        <a href="#" class="btn btn-primary">Lihat Detail</a>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <img src="{{ asset('fototanaman/'.$row->foto) }}" class="rounded mx-auto d-block" width="100%" height="400px">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h2>{{ $row->nama }}</h2>
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Asal</td>
+                                                        <td>  :</td>
+                                                        <td>{{ $row->asal }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Jumlah Tanaman</td>
+                                                        <td>  :</td>
+                                                        <td>{{ $row->jumlah }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Deskripsi</td>
+                                                        <td>  :</td>
+                                                        <td>{{ $row->Deskripsi }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <a href="#">
+                                            <button type="button" class="btn btn-primary" data-mdb-ripple-init>Button</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
-            @endforeach
             </div>
-        </div>
     </section>
 
     @include('partials.footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
-    
+
 </body>
 
 </html>

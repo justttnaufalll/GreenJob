@@ -12,35 +12,41 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $data = gandusari::all();
-        return view('datatanaman', compact('data'));
-    }
 
-    public function about(){
+    public function about()
+    {
         return view('about');
     }
-    public function login(){
+    public function login()
+    {
         return view('login');
-    } 
+    }
 
-    public function create(){
+    public function create()
+    {
         return view('tambah');
-    } 
-    public function home(){
+    }
+    public function view()
+    {
+        return view('view');
+    }
+
+    public function home()
+    {
         $datas = gandusari::paginate(10);
         return view('index', compact('datas'));
-    } 
-    public function detail(){
-        $datas = gandusari::paginate(10);
+    }
+    public function detail()
+    {
+        $datas = gandusari::paginate(100);
         return view('details', compact('datas'));
-    } 
+    }
 
-    public function insertdata(Request $request){
+    public function insertdata(Request $request)
+    {
         //dd($request->all());
         $data = gandusari::create($request->all());
-        if($request->hasFile('foto')){
+        if ($request->hasFile('foto')) {
             $request->file('foto')->move('fototanaman/', $request->file('foto')->getClientOriginalName());
             $data->foto = $request->file('foto')->getClientOriginalName();
             $data->save();
@@ -48,19 +54,22 @@ class DashboardController extends Controller
         return redirect()->route('datatanaman')->with('success', 'Data Berhasil Di Simpan');
     }
 
-    public function editdata($id){
+    public function editdata($id)
+    {
         $data = gandusari::find($id);
         //dd($data);
         return view('editdata', compact('data'));
     }
-    public function updatedata(Request $request, $id){
+    public function updatedata(Request $request, $id)
+    {
         $data = gandusari::find($id);
         $data->update($request->all());
         return redirect()->route('datatanaman')->with('success', 'Data Berhasil Di Update');
     }
-    public function delete($id){
+    public function delete($id)
+    {
         $data = gandusari::find($id);
-        $data->delete(); 
+        $data->delete();
         return redirect()->route('datatanaman')->with('success', 'Data Berhasil Di Hapus');
     }
 }
