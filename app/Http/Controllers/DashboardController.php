@@ -26,11 +26,6 @@ class DashboardController extends Controller
     {
         return view('tambah');
     }
-    public function view()
-    {
-        return view('view');
-    }
-
     public function home()
     {
         $datas = gandusari::paginate(10);
@@ -38,27 +33,37 @@ class DashboardController extends Controller
     }
     public function detail()
     {
-        $datas = gandusari::paginate(100);
+        $datas = gandusari::all();
         return view('details', compact('datas'));
+    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+
+    public function index()
+    {
+        $datas = gandusari::all();
+        return view('datatanaman', compact('datas'));
     }
 
     public function insertdata(Request $request)
     {
         //dd($request->all());
-        $data = gandusari::create($request->all());
+        $datas = gandusari::create($request->all());
         if ($request->hasFile('foto')) {
             $request->file('foto')->move('fototanaman/', $request->file('foto')->getClientOriginalName());
-            $data->foto = $request->file('foto')->getClientOriginalName();
-            $data->save();
+            $datas->foto = $request->file('foto')->getClientOriginalName();
+            $datas->save();
         }
         return redirect()->route('datatanaman')->with('success', 'Data Berhasil Di Simpan');
     }
 
     public function editdata($id)
     {
-        $data = gandusari::find($id);
+        $datas = gandusari::find($id);
         //dd($data);
-        return view('editdata', compact('data'));
+        return view('editdata', compact('datas'));
     }
     public function updatedata(Request $request, $id)
     {

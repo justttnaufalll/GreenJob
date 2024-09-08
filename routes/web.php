@@ -22,7 +22,6 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('regi
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/', [DashboardController::class, 'home'])->name('home');
-Route::get('/home', [DashboardController::class, 'home'])->name('home');
 
 Route::get('/about', [DashboardController::class, 'about'])->name('about');
 Route::get('/view', [DashboardController::class, 'view'])->name('view');
@@ -31,21 +30,17 @@ Route::get('/details', [DashboardController::class, 'detail'])->name('details');
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.index');
 Route::post('/login', [AuthController::class, 'login'])->name('login.post');
 
-Route::get('/datatanaman', [DataTanamanController::class, 'index'])->name('datatanaman');
-
-Route::get('/tambah', [DashboardController::class, 'create'])->name('tambah');
-Route::post('/insertdata', [DashboardController::class, 'insertdata'])->name('insertdata');
-
-Route::get('/editdata/{id}', [DashboardController::class, 'editdata'])->name('editdata');
-Route::post('/updatedata/{id}', [DashboardController::class, 'updatedata'])->name('updatedata');
-
-Route::get('/delete/{id}', [DashboardController::class, 'delete'])->name('delete');
-
 // Protected routes
 Route::middleware('auth')->group(function () {
-    Route::get('/datatanaman', function () {
-        return view('datatanaman');
-    })->name('datatanaman');
+    Route::get('/datatanaman', [DataTanamanController::class, 'index'])->name('datatanaman');
+
+    Route::get('/tambah', [DataTanamanController::class, 'create'])->name('tambah');
+    Route::post('/insertdata', [DataTanamanController::class, 'insertdata'])->name('insertdata');
+
+    Route::get('/editdata/{id}', [DataTanamanController::class, 'editdata'])->name('editdata');
+    Route::post('/updatedata/{id}', [DataTanamanController::class, 'updatedata'])->name('updatedata');
+
+    Route::get('/delete/{id}', [DataTanamanController::class, 'delete'])->name('delete');
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout.post');
 });

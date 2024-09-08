@@ -17,11 +17,11 @@
       <!-- TOMBOL TAMBAH DATA -->
       <div class="pb-3">
         <a href='tambah' class="btn btn-primary">+ Tambah Data</a>
-        <!-- Logout Button -->
+        <!-- Logout Button
         <form action="{{ route('logout.post') }}" method="POST">
           @csrf
           <button type="submit" class="btn btn-danger">Kembali</button>
-        </form>
+        </form> -->
       </div>
       @if ($massage = Session::get('success'))
       <div class="alert alert-success" role="alert">
